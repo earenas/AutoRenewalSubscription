@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Main View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="MainViewController" customModule="AutoRenewalSubscriptionDemo" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC" userLabel="MainViewController">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No subscription found. Thanks for trying our App." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tYK-G9-dXj">
+                                <rect key="frame" x="16" y="50" width="343" height="220"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" staticText="YES" notEnabled="YES"/>
+                                </accessibility>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="220" id="H5k-aq-hWr"/>
+                                    <constraint firstAttribute="width" constant="343" id="rtx-ym-cyN"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                        <integer key="value" value="3"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="8"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="layer.borderColor">
+                                        <color key="value" red="0.26848027110099792" green="0.060226656496524811" blue="0.25070703029632568" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="KlJ-ng-yfu" userLabel="StackViewUIButtons">
+                                <rect key="frame" x="68" y="290" width="240" height="204"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Jo-oh-NuF">
+                                        <rect key="frame" x="0.0" y="0.0" width="240" height="36"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                        <state key="normal" title="Basic Subscription"/>
+                                        <connections>
+                                            <action selector="onBasicSubscription:" destination="BYZ-38-t0r" eventType="touchUpInside" id="SvR-67-7s7"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A4H-wo-M1C">
+                                        <rect key="frame" x="0.0" y="56" width="240" height="36"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                        <state key="normal" title="Plus Subscription"/>
+                                        <connections>
+                                            <action selector="onPlusSubscription:" destination="BYZ-38-t0r" eventType="touchUpInside" id="98l-3g-TQP"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QWY-oW-XXK">
+                                        <rect key="frame" x="0.0" y="112" width="240" height="36"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                        <state key="normal" title="Premium Subscription"/>
+                                        <connections>
+                                            <action selector="onPremiumSubscription:" destination="BYZ-38-t0r" eventType="touchUpInside" id="cGv-7L-9ZI"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ggr-UG-oad">
+                                        <rect key="frame" x="0.0" y="168" width="240" height="36"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                        <state key="normal" title="Restore Subscription"/>
+                                        <connections>
+                                            <action selector="onRestorePurchases:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3na-NJ-TQV"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="pAk-L8-KXu"/>
+                                </constraints>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dWw-fx-wKD">
+                                <rect key="frame" x="303" y="498" width="30" height="42"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
+                                <state key="normal" title="?"/>
+                                <connections>
+                                    <action selector="onHelp:" destination="BYZ-38-t0r" eventType="touchUpInside" id="a6q-hb-CCW"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Status" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a8e-6q-e0j">
+                                <rect key="frame" x="35" y="20" width="72" height="24"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="72" id="6JS-OT-MJz"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="a8e-6q-e0j" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="19" id="6K1-A8-Ggv"/>
+                            <constraint firstItem="a8e-6q-e0j" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="9bZ-kA-ZFG"/>
+                            <constraint firstItem="KlJ-ng-yfu" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="270" id="9lC-KX-9qm"/>
+                            <constraint firstItem="dWw-fx-wKD" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="478" id="HvC-Xh-SJW"/>
+                            <constraint firstItem="KlJ-ng-yfu" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ZEp-iS-FxW"/>
+                            <constraint firstItem="tYK-G9-dXj" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="bWb-9y-A1P"/>
+                            <constraint firstItem="tYK-G9-dXj" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" priority="500" constant="30" id="tEp-4b-eng"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="dWw-fx-wKD" secondAttribute="trailing" constant="26" id="xrm-Ye-7bt"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="basicUIButton" destination="0Jo-oh-NuF" id="PMf-A7-tA6"/>
+                        <outlet property="descriptionUILabel" destination="tYK-G9-dXj" id="R5g-8d-uMy"/>
+                        <outlet property="helpUIButton" destination="dWw-fx-wKD" id="JWz-DH-8CB"/>
+                        <outlet property="plusUIButton" destination="A4H-wo-M1C" id="0Xb-im-NfZ"/>
+                        <outlet property="premiumUIButton" destination="QWY-oW-XXK" id="fU8-G4-noZ"/>
+                        <outlet property="restoreUIButton" destination="ggr-UG-oad" id="C7O-bj-ywe"/>
+                        <outlet property="statusUILabel" destination="a8e-6q-e0j" id="Edm-Sr-gZ6"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="117.59999999999999" y="123.68815592203899"/>
+        </scene>
+    </scenes>
+</document>
