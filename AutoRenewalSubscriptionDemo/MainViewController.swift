@@ -1,14 +1,32 @@
 //
-//  ViewController.swift
+//  MainViewController.swift
 //  AutoRenewalSubscriptionDemo
 //
-//  Created by Eric on 8/3/17.
-//  Copyright © 2017 Latin OS Trends. All rights reserved.
+//  Created by Eric Arenas on 8/3/17.
+// MIT License
+//// Copyright © 2017 Latin OS Trends -  Eric Arenas
 //
+//Permission is hereby granted, free of charge, to any person obtaining a copy
+//of this software and associated documentation files (the "Software"), to deal
+//in the Software without restriction, including without limitation the rights
+//to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+//copies of the Software, and to permit persons to whom the Software is
+//furnished to do so, subject to the following conditions:
+//
+//The above copyright notice and this permission notice shall be included in all
+//copies or substantial portions of the Software.
+//
+//THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+//IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+//FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+//AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+//LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+//OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+//SOFTWARE.
+////
 
 import UIKit
-import StoreKit
-import TPInAppReceipt
+
 
 class MainViewController: UIViewController
 {
@@ -41,9 +59,6 @@ override func viewDidLoad()
 {
     self.initialSetup()
     super.viewDidLoad()
-    // Do any additional setup after loading the view, typically from a nib.
-    
-    //verify that we have Wifi or 3G/4G connection
     
     //adding notification observers
     NotificationCenter.default.addObserver(self, selector: #selector(self.paymentRestoreNotification), name: Notification.Name("paymentRestored"), object: nil)
@@ -100,16 +115,8 @@ func initialSetup()
 override func didReceiveMemoryWarning()
 {
     super.didReceiveMemoryWarning()
-    // Dispose of any resources that can be recreated.
 }
 
-func isStringEmptyOrNil(paramString : String?) -> Bool
-{ //returns true if the paramString is empty or NIL, false otherwise
-        if paramString == nil {return true}
-        else if paramString!.characters.count == 0 {return true}
-        else {return false}
-    }
-    
 
 func paymentCompletedNotification() -> Void
 {
@@ -145,7 +152,7 @@ func paymentFailedNotification(_ notification: NSNotification) -> Void
     
 func restoreFailedNotification(_ notification: NSNotification) -> Void
 {
-    // this method is called by the notification observer when there is an error in processing the restore
+    // this method is called by the notification observer when there is an error in processing the restore payments
     
     // closing the alert explaining the restore process
     self.hideRestoreInProgressAlert()
@@ -197,7 +204,7 @@ func enableSubscriptionForProduct(productParam:String) -> Void
 
 func displayFreeContent() -> Void
 {
-    //if there was no valid subscription found,  you need to let your users use your app, ideally displaying free content
+    //if there was no valid subscription found,  you still need to let your users use your app, ideally displaying free content
     self.descriptionUILabel.text = "No subscription found.\nThanks for trying our App.\nPlease consider upgrading your app experience with our premium products below."
     
 }
@@ -224,7 +231,7 @@ func processPurchase(productParam:String) -> Void
                 }
                 else
                 {
-                    //for debugging purposes, feel free to delete this else section
+                    //for informational purposes, feel free to delete this else section
                     if myAppDelegate.debugPrintStatements
                     {print("Trying to purchase \(productParam) but found \(skproduct.productIdentifier)")}
                 }

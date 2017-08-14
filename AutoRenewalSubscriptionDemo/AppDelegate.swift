@@ -2,9 +2,29 @@
 //  AppDelegate.swift
 //  AutoRenewalSubscriptionDemo
 //
-//  Created by Eric on 8/3/17.
-//  Copyright © 2017 Latin OS Trends. All rights reserved.
+//  Created by Eric Arenas on 8/3/17.
+// MIT License
+//// Copyright © 2017 Latin OS Trends -  Eric Arenas
 //
+//Permission is hereby granted, free of charge, to any person obtaining a copy
+//of this software and associated documentation files (the "Software"), to deal
+//in the Software without restriction, including without limitation the rights
+//to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+//copies of the Software, and to permit persons to whom the Software is
+//furnished to do so, subject to the following conditions:
+//
+//The above copyright notice and this permission notice shall be included in all
+//copies or substantial portions of the Software.
+//
+//THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+//IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+//FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+//AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+//LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+//OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+//SOFTWARE.
+////
+
 
 // #1 add libraries StoreKit and TPInAppReceipt
 import UIKit
@@ -13,7 +33,7 @@ import TPInAppReceipt
 
 @UIApplicationMain
 
-// #2 make AppDelegate inherit from SKPaymentTransactionObserver and SKProductsRequestDelegate
+// #2 AppDelegate inherit from SKPaymentTransactionObserver and SKProductsRequestDelegate
 class AppDelegate: UIResponder, UIApplicationDelegate, SKPaymentTransactionObserver, SKProductsRequestDelegate
 {
 
@@ -64,7 +84,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SKPaymentTransactionObser
     }
 
     
-    // SKPaymentTransactionObserver methods/funcs
+    // SKPaymentTransactionObserver methods/functions
     func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction])
     {
         // checking what type of transaction is...
@@ -131,9 +151,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SKPaymentTransactionObser
                 NotificationCenter.default.post(name: Notification.Name("paymentCompleted"), object: nil, userInfo:nil )
                 
                 //complete the transaction
-                queue.finishTransaction(transaction)
-                // TODO TO DO - should the finish transaction be BEFORE the purchase verification and receipt verification?
-                
+                queue.finishTransaction(transaction)                
                 
                 break
             }
@@ -216,11 +234,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SKPaymentTransactionObser
                 { print("Auto Renewal Subscription Demo - verifyReceipt - There was an error when verifying the receipt, with error:\(error)")}
                 return false
             }
-            
-            //getting all subscriptions active as of today
             let todayDate : Date = Date()
             
-            //verifying "productToVerify"
+            //getting all subscriptions active as of today
             let currentSubs : InAppPurchase? = receipt.activeAutoRenewableSubscriptionPurchases(ofProductIdentifier: productToVerify, forDate: todayDate)
             if currentSubs == nil
             {
@@ -230,13 +246,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SKPaymentTransactionObser
             }
             else
             {
-                // currentSubs != nil
-                
-                //Now, check if the subscription has expired or cancel
-                
-                // currentSubs!.subscriptionExpirationDate is not null and currentSubs!.cancellationDateString could be NIL
-                
-                // currentSubs!.subscriptionExpirationDate is not null
                 let expirationDateSubscription : Date = currentSubs!.subscriptionExpirationDate
                 
                 if expirationDateSubscription <= todayDate
@@ -249,7 +258,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SKPaymentTransactionObser
                 {
                     // expirationDateSubscription > todayDate
                     
-                    //need to check cancel date if it exists
+                    //need to check cancel date, if it exists
                     if isStringEmptyOrNil(paramString: currentSubs!.cancellationDateString)
                     {
                         //valid subscription not yet cancel and not expired
@@ -280,7 +289,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SKPaymentTransactionObser
                     } //end of else //currentSubs!.cancellationDateString is not null, need to compare dates
                     
                 } //end of else // expirationDateSubscription > todayDate
-            } //end of else // currentSubs != nil --
+            } //end of else // currentSubs != nil
             
         } //end of do at the start of this func
         catch
@@ -296,7 +305,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SKPaymentTransactionObser
     {
         //An SKProductsRequest object is used to retrieve localized information about a list of products from the Apple App Store. Your application uses this request to present localized prices and other information to the user without having to maintain that list itself. (from Apple Documentation)
         
-        //in this simple app, we stored the pricing and product names (localized) in the skProductArray
+        //in this app, we stored the pricing and product names (localized) in the skProductArray
         skProductArray = response.products
     }
     
@@ -325,7 +334,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SKPaymentTransactionObser
             {
                 let payment = SKPayment(product: productParam)
                 SKPaymentQueue.default().add(payment)
-                // this is how we purchase the productParam
+                // purchasing the product in productParam
             }
             else
             {
