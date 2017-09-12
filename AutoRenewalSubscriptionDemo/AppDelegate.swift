@@ -3,26 +3,21 @@
 //  AutoRenewalSubscriptionDemo
 //
 //  Created by Eric Arenas on 8/3/17.
-// MIT License
+//  All Rights Reserved
 //// Copyright © 2017 Latin OS Trends -  Eric Arenas
 //
-//Permission is hereby granted, free of charge, to any person obtaining a copy
-//of this software and associated documentation files (the "Software"), to deal
-//in the Software without restriction, including without limitation the rights
-//to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-//copies of the Software, and to permit persons to whom the Software is
-//furnished to do so, subject to the following conditions:
+// IF YOU WANT TO GET A LICENSE FOR THIS SOURCE CODE, PLEASE DOWNLOAD MY APPLICATION ON THE APP STORE AND SUBSCRIBE.
+// BY DOWNLOADING THIS SOURCE CODE, YOU HEREBY AGREE TO DOWNLOAD MY APPLICATION ON THE APP STORE AND SUBSCRIBE TO IT.
+// BY USING THIS PORTIONS OR ALL OF THIS SOURCE CODE, YOU HEREBY AGREE TO DOWNLOAD MY APPLICATION ON THE APP STORE AND SUBSCRIBE TO IT.
+// 
 //
-//The above copyright notice and this permission notice shall be included in all
-//copies or substantial portions of the Software.
-//
-//THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-//IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-//FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-//AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-//LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-//OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-//SOFTWARE.
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+// SOFTWARE.
 ////
 
 
@@ -139,7 +134,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SKPaymentTransactionObser
     func purchasedState (for transaction : SKPaymentTransaction , in queue : SKPaymentQueue)
     {
         if debugPrintStatements
-        { print("Auto Renewal Subscription Demo - User sucessfully purchased a subscription with transaction \(transaction) and productID: \(transaction.payment.productIdentifier)")}
+        { print("Auto Renewal Subscription Demo - User sucessfully purchased a subscription with transaction \(transaction) and productID: \(transaction.payment.productIdentifier)") }
+        
+        // Always complete the transaction, otherwise these transactions remain on the queue forever.
+        queue.finishTransaction(transaction)
         
         let subscriptionProducts : [String] = [basicAccessProduct,plusAccessProduct,premiumAccessProduct]
         
@@ -150,8 +148,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SKPaymentTransactionObser
                 // In order to enable the subscription, we send a notification that the payment was successful
                 NotificationCenter.default.post(name: Notification.Name("paymentCompleted"), object: nil, userInfo:nil )
                 
-                //complete the transaction
-                queue.finishTransaction(transaction)                
+            
                 
                 break
             }
@@ -161,9 +158,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SKPaymentTransactionObser
     
     func restoredState (for transaction : SKPaymentTransaction , in queue : SKPaymentQueue)
     {
+        
         if debugPrintStatements
-        { print("Auto Renewal Subscription Demo - User restored an already purchased a subscription with transaction \(transaction) ")
-            queue.finishTransaction(transaction)}
+        { print("Auto Renewal Subscription Demo - User restored an already purchased a subscription with transaction \(transaction) ") }
+        
+        queue.finishTransaction(transaction)
         
         if transaction.error == nil
         {
@@ -191,6 +190,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SKPaymentTransactionObser
     {
         if debugPrintStatements
         { print("Auto Renewal Subscription Demo - Deferred a subscription with transaction \(transaction) ")}
+        
         //you need to complete the transaction otherwise, they remain in the queue... forever
         queue.finishTransaction(transaction)
     }
